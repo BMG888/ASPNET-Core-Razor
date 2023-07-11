@@ -1,0 +1,78 @@
+﻿@page
+@model ASPNET_Core_Proyecto.Pages.ListaLibros.IndexModel
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-10">
+        <h2 class="text-info">Lista de libros</h2>
+    </div>
+    <div class="col-2">
+        <a asp-page="Crear" class="btn btn-info form-control text-white">Crear nuevo libro</a>
+    </div>
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Libros.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Libros.FirstOrDefault().Nombre"></label>
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(m=>m.Libros.FirstOrDefault().Autor)*@
+                            <label asp-for="Libros.FirstOrDefault().Autor"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Libros.FirstOrDefault().ISBM"></label>
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Libros)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Autor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ISBM)
+                            </td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Esta información será eliminada, ¿está seguro?')" class="btn btn-danger btn-sm">Eliminar</button>
+                                <a asp-page="Editar" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Editar</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>No se encontró ningún libro</p>
+            }
+        </form>
+    </div>
+    <div class="col-12" style="text-align: center">
+        <br />
+        <span class="h3 text-info">O</span>
+        <br /><br />
+    </div>
+    <div class="col-12 p-3">
+        <table id="DTCargar" class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>ISBM</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section Scripts{ 
+    <script src="~/js/ListaLibros.js"></script>
+}

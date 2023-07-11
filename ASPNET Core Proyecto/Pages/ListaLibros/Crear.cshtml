@@ -1,0 +1,47 @@
+﻿@page
+@model ASPNET_Core_Proyecto.Pages.ListaLibros.CrearModel
+
+<br />
+<h2 class="text-info">Crear nuevo libro</h2>
+<br />
+<div class="border container" style="padding: 30px">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-4" style="margin-bottom: 5px">
+                <label asp-for="Libro.Nombre"></label>
+            </div>
+            <div class="col-6" style="margin-bottom: 5px">
+                <input asp-for="Libro.Nombre" class="form-control" />
+            </div>
+            <span asp-validation-for="Libro.Nombre" class="text-danger col-2"></span>
+            <br />
+            <div class="col-4" style="margin-bottom: 5px">
+                <label asp-for="Libro.Autor"></label>
+            </div>
+            <div class="col-6" style="margin-bottom: 5px">
+                <input asp-for="Libro.Autor" class="form-control" />
+            </div>
+            <span asp-validation-for="Libro.Autor" class="text-danger col-2"></span>
+            <div class="col-4">
+                <label asp-for="Libro.ISBM"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Libro.ISBM" class="form-control" />
+            </div>
+            <span asp-validation-for="Libro.ISBM" class="text-danger col-2"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-4">
+                <input type="submit" value="Crear" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Regresar a la lista</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{ 
+    <partial name="_ValidationScriptsPartial" /> @*la validacion se hace del lado del cliente*@
+}
